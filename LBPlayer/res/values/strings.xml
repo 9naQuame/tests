@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LBPlayer</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="songTitle">Song Title</string>
+    <string name="desc">image</string>
+    <string name="center">Center</string>
+    <string name="title_activity_playlist">PlaylistActivity</string>
+    <string name="AddItem">Add Item</string>
+    <string name="ResetMe">Reset Me</string>
+    <string name="AboutMe">About Me</string>
+    <string name="logo">Logo</string>
+    <string name="lb">lurvberry</string>
+
+</resources>

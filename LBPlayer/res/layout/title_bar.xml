@@ -1,0 +1,79 @@
+<TabHost
+	android:id="@android:id/tabhost"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+	<RelativeLayout
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent">
+	    
+	    <LinearLayout
+	    android:id="@+id/main_header_menu" 
+	  	android:orientation="horizontal"
+		android:layout_width="fill_parent"
+		android:layout_height="35dip"
+		android:gravity="center_vertical"
+		android:paddingLeft="5dip">
+	
+			<ImageView 
+				android:id="@+id/header" 
+				android:contentDescription="@string/logo"
+				android:src="@drawable/ic_launcher"
+				android:layout_width="wrap_content" 
+				android:layout_height="wrap_content" />
+			
+			<LinearLayout
+			    android:id="@+id/tabSelected" 
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				android:gravity="right|center_vertical"
+				android:paddingRight="5dip">
+			
+				<TextView 
+					android:id="@+id/title"
+					android:textIsSelectable="true"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content"
+					android:textSize="12sp"
+					android:paddingRight="5dip" />
+						    
+			    <ImageView
+					android:id="@+id/icon" 
+					android:contentDescription="@string/logo"
+					android:layout_width="wrap_content" 
+					android:layout_height="wrap_content"/>
+
+   			</LinearLayout>
+		
+		</LinearLayout>
+	
+	   	<LinearLayout
+	       	android:id="@+id/sub_header_menu"
+	       	android:layout_below="@id/main_header_menu"
+		    android:orientation="vertical"
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent">
+		    
+			<TabWidget
+		    	android:id="@android:id/tabs"
+		        android:layout_width="match_parent"
+		        android:layout_height="55dp"
+		        android:layout_weight="0"/>
+		        	
+		        <FrameLayout
+		            android:id="@android:id/tabcontent"
+		            android:layout_width="0dp"
+		            android:layout_height="0dp" 
+					android:layout_weight="0"/>
+		        
+		        <FrameLayout
+		            android:id="@+id/realtabcontent"
+		            android:layout_width="match_parent"
+		            android:layout_height="0dp" 
+					android:layout_weight="1"/>           	
+		    </LinearLayout>
+		    
+	</RelativeLayout>
+</TabHost>
