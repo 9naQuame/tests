@@ -8,11 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class AppleFragment extends ListFragment{
+public class SettingFragment extends ListFragment{
 	
     /** An array of items to display in ArrayList */
-	 String apple_versions[] = new String[]{
-             "Mountain Lion",
+	 String setting[] = new String[]{
+             "",
              "Lion",
              "Snow Leopard",
              "Leopard",
@@ -28,7 +28,7 @@ public class AppleFragment extends ListFragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
 		/** Creating array adapter to set data in listview */
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_multiple_choice, apple_versions);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(), android.R.layout.simple_list_item_multiple_choice, setting);
 
         /** Setting the array adapter to the listview */
         setListAdapter(adapter);
