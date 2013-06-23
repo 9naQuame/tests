@@ -5,22 +5,21 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.Menu;
-import android.view.MenuInflater;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.view.Window;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class PlayerFragment extends Activity implements OnCompletionListener, SeekBar.OnSeekBarChangeListener {
+public class PlayerFragment extends Fragment implements OnCompletionListener, SeekBar.OnSeekBarChangeListener {
 
 	private ImageButton btnPlay;
 	private ImageButton btnForward;
@@ -51,28 +50,23 @@ public class PlayerFragment extends Activity implements OnCompletionListener, Se
 	
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		
-		requestWindowFeature(Window.FEATURE_CUSTOM_TITLE);
-        setContentView(R.layout.main);
-        getWindow().setFeatureInt(Window.FEATURE_CUSTOM_TITLE, R.layout.title_bar);
-		
-        setContentView(R.layout.lb_player_interface);
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		// Inflate the layout for this fragment
+        View view = inflater.inflate(R.layout.lb_player_interface, container, false);
 		
 		// All player buttons
-		btnPlay = (ImageButton) findViewById(R.id.btnPlay);
-		btnForward = (ImageButton) findViewById(R.id.btnForward);
-		btnBackward = (ImageButton) findViewById(R.id.btnBackward);
-		btnNext = (ImageButton) findViewById(R.id.btnNext);
-		btnPrevious = (ImageButton) findViewById(R.id.btnPrevious);
-		btnPlaylist = (ImageButton) findViewById(R.id.btnPlaylist);
-		btnRepeat = (ImageButton) findViewById(R.id.btnRepeat);
-		btnShuffle = (ImageButton) findViewById(R.id.btnShuffle);
-		songProgressBar = (SeekBar) findViewById(R.id.songProgressBar);
-		songTitleLabel = (TextView) findViewById(R.id.songTitle);
-		songCurrentDurationLabel = (TextView) findViewById(R.id.songCurrentDurationLabel);
-		songTotalDurationLabel = (TextView) findViewById(R.id.songTotalDurationLabel);
+		btnPlay = (ImageButton) view.findViewById(R.id.btnPlay);
+		btnForward = (ImageButton) view.findViewById(R.id.btnForward);
+		btnBackward = (ImageButton) view.findViewById(R.id.btnBackward);
+		btnNext = (ImageButton) view.findViewById(R.id.btnNext);
+		btnPrevious = (ImageButton) view.findViewById(R.id.btnPrevious);
+		btnPlaylist = (ImageButton) view.findViewById(R.id.btnPlaylist);
+		btnRepeat = (ImageButton) view.findViewById(R.id.btnRepeat);
+		btnShuffle = (ImageButton) view.findViewById(R.id.btnShuffle);
+		songProgressBar = (SeekBar) view.findViewById(R.id.songProgressBar);
+		songTitleLabel = (TextView) view.findViewById(R.id.songTitle);
+		songCurrentDurationLabel = (TextView) view.findViewById(R.id.songCurrentDurationLabel);
+		songTotalDurationLabel = (TextView) view.findViewById(R.id.songTotalDurationLabel);
 		
 		// Mediaplayer
 		mp = new MediaPlayer();
@@ -211,12 +205,12 @@ public class PlayerFragment extends Activity implements OnCompletionListener, Se
 			public void onClick(View arg0) {
 				if(isRepeat){
 					isRepeat = false;
-					Toast.makeText(getApplicationContext(), "Repeat is OFF", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getActivity(), "Repeat is OFF", Toast.LENGTH_SHORT).show();
 					btnRepeat.setImageResource(R.drawable.btn_repeat);
 				}else{
 					// make repeat to true
 					isRepeat = true;
-					Toast.makeText(getApplicationContext(), "Repeat is ON", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getActivity(), "Repeat is ON", Toast.LENGTH_SHORT).show();
 					// make shuffle to false
 					isShuffle = false;
 					btnRepeat.setImageResource(R.drawable.btn_repeat_focused);
@@ -235,12 +229,12 @@ public class PlayerFragment extends Activity implements OnCompletionListener, Se
 			public void onClick(View arg0) {
 				if(isShuffle){
 					isShuffle = false;
-					Toast.makeText(getApplicationContext(), "Shuffle is OFF", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getActivity(), "Shuffle is OFF", Toast.LENGTH_SHORT).show();
 					btnShuffle.setImageResource(R.drawable.btn_shuffle);
 				}else{
 					// make repeat to true
 					isShuffle= true;
-					Toast.makeText(getApplicationContext(), "Shuffle is ON", Toast.LENGTH_SHORT).show();
+					Toast.makeText(getActivity(), "Shuffle is ON", Toast.LENGTH_SHORT).show();
 					// make shuffle to false
 					isRepeat = false;
 					btnShuffle.setImageResource(R.drawable.btn_shuffle_focused);
@@ -257,25 +251,25 @@ public class PlayerFragment extends Activity implements OnCompletionListener, Se
 			
 			@Override
 			public void onClick(View arg0) {
-				Intent i = new Intent(getApplicationContext(), PlaylistActivity.class);
+				Intent i = new Intent(getActivity(), PlaylistActivity.class);
 				startActivityForResult(i, 100);			
 			}
 		});
-		
+	return view;	
 	}
-	
+/*	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.main, menu);
 		return true;
 	}
-
+*/
 	
 	/**
 	 * Receiving song index from playlist view
 	 * and play the song
-	 * */
+	 * *//*
 	@Override
     protected void onActivityResult(int requestCode,
                                      int resultCode, Intent data) {
@@ -286,7 +280,7 @@ public class PlayerFragment extends Activity implements OnCompletionListener, Se
              playSong(currentSongIndex);
         }
  
-    }
+    }*/
 	
 	/**
 	 * Function to play a song
