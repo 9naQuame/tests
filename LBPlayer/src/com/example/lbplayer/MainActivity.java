@@ -2,13 +2,13 @@ package com.example.lbplayer;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.widget.TabHost;
 
 public class MainActivity extends FragmentActivity {
 	TabHost tHost;
 	
-	
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,37 +22,55 @@ public class MainActivity extends FragmentActivity {
 			
 			@Override
 			public void onTabChanged(String tabId) {
-				android.support.v4.app.FragmentManager fm =   getSupportFragmentManager();
-				AndroidFragment androidFragment = (AndroidFragment) fm.findFragmentByTag("android");
-				AppleFragment appleFragment = (AppleFragment) fm.findFragmentByTag("apple");
-				android.support.v4.app.FragmentTransaction ft = fm.beginTransaction();
+				FragmentManager fm =   getSupportFragmentManager();
+				PlayerFragment player = (PlayerFragment) fm.findFragmentByTag("player");
+				SongFragment songs = (SongFragment) fm.findFragmentByTag("songs");
+				SettingFragment settings = (SettingFragment) fm.findFragmentByTag("setting");
 				
-				/** Detaches the androidfragment if exists */
-				if(androidFragment!=null)
-					ft.detach(androidFragment);
+				FragmentTransaction ft = fm.beginTransaction();
 				
-				/** Detaches the applefragment if exists */
-				if(appleFragment!=null)
-					ft.detach(appleFragment);
+				/** Detaches the player fragment if exists */
+				if(player!=null) ft.detach(player);
 				
-				/** If current tab is android */
-				if(tabId.equalsIgnoreCase("android")){
+				/** Detaches the songs fragment if exists */
+				if(songs!=null) ft.detach(songs);
+				
+				/** Detaches the settings fragment if exists */
+				if(settings!=null) ft.detach(settings);
+				
+				/** If current tab is Player */
+				if(tabId.equalsIgnoreCase("player")){
 					
-					if(androidFragment==null){		
-						/** Create AndroidFragment and adding to fragmenttransaction */
-						ft.add(R.id.realtabcontent,new AndroidFragment(), "android");						
-					}else{
-						/** Bring to the front, if already exists in the fragmenttransaction */
-						ft.attach(androidFragment);						
+					if(player==null){		
+						/** Create player and adding to fragmenttransaction */
+						ft.add(R.id.realtabcontent,new PlayerFragment(), "player");						
 					}
 					
-				}else{	/** If current tab is apple */
-					if(appleFragment==null){
-						/** Create AppleFragment and adding to fragmenttransaction */
-						ft.add(R.id.realtabcontent,new AppleFragment(), "apple");						
+					else{
+						/** Bring to the front, if already exists in the fragmenttransaction */
+						ft.attach(player);						
+					}
+					
+				}
+				else if(tabId.equalsIgnoreCase("songs")){	/** If current tab is Songs */
+					
+					if(songs==null){		
+						/** Create player and adding to fragmenttransaction */
+						ft.add(R.id.realtabcontent,new SongFragment(), "songs");						
+					}
+					
+					else{
+						/** Bring to the front, if already exists in the fragmenttransaction */
+						ft.attach(songs);						
+					}
+				}
+				else{	/** If current tab is Settings */
+					if(settings==null){
+						/** Create settings and adding to fragmenttransaction */
+						ft.add(R.id.realtabcontent,new SettingFragment(), "setting");						
 					}else{
 						/** Bring to the front, if already exists in the fragmenttransaction */
-						ft.attach(appleFragment);						
+						ft.attach(settings);						
 					}
 				}
 				ft.commit();				
@@ -63,18 +81,23 @@ public class MainActivity extends FragmentActivity {
 		/** Setting tabchangelistener for the tab */
 		tHost.setOnTabChangedListener(tabChangeListener);
                 
-		/** Defining tab builder for Andriod tab */
-        TabHost.TabSpec tSpecAndroid = tHost.newTabSpec("android");
-        tSpecAndroid.setIndicator("Android",getResources().getDrawable(R.drawable.android));        
-        tSpecAndroid.setContent(new TabContent(getBaseContext()));
-        tHost.addTab(tSpecAndroid);
+		/** Defining tab builder for Player tab */
+        TabHost.TabSpec tSpecPlayer = tHost.newTabSpec("player");
+        tSpecPlayer.setIndicator("Player",getResources().getDrawable(R.drawable.android));        
+        tSpecPlayer.setContent(new TabContent(getBaseContext()));
+        tHost.addTab(tSpecPlayer);
         
+        /** Defining tab builder for Songs tab */
+        TabHost.TabSpec tSpecSong = tHost.newTabSpec("songs");
+        tSpecSong.setIndicator("Songs",getResources().getDrawable(R.drawable.apple));        
+        tSpecSong.setContent(new TabContent(getBaseContext()));
+        tHost.addTab(tSpecSong);
         
-        /** Defining tab builder for Apple tab */
-        TabHost.TabSpec tSpecApple = tHost.newTabSpec("apple");
-        tSpecApple.setIndicator("Apple",getResources().getDrawable(R.drawable.apple));        
-        tSpecApple.setContent(new TabContent(getBaseContext()));
-        tHost.addTab(tSpecApple);
+        /** Defining tab builder for Settings tab */
+        TabHost.TabSpec tSpecSetting = tHost.newTabSpec("setting");
+        tSpecSetting.setIndicator("Settings",getResources().getDrawable(R.drawable.apple));        
+        tSpecSetting.setContent(new TabContent(getBaseContext()));
+        tHost.addTab(tSpecSetting);
         
      }   
  	
