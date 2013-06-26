@@ -38,7 +38,7 @@ public class PlayerFragment extends Fragment implements OnCompletionListener, Se
 	private  MediaPlayer mp;
 	
 	// Handler to update UI timer, progress bar etc,.
-	private Handler mHandler = new Handler();;
+	private Handler mHandler = new Handler();
 	private MusicManager songManager;
 	private Utilities utils;
 	private int seekForwardTime = 5000; // 5000 milliseconds
