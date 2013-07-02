@@ -5,11 +5,9 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import android.os.Environment;
-
 public class MusicManager {
 	// SDCard Path
-	final String MEDIA_PATH = Environment.getExternalStorageDirectory().getPath();
+	final String MEDIA_PATH = "/sdcard/external_sd/Music";
 	private ArrayList<HashMap<String, String>> songsList = new ArrayList<HashMap<String, String>>();
 	
 	// Constructor
