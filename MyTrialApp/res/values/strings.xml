@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">My Trial App</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="button">login</string>
+    <string name="checkBox">dp</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="button_send">Send</string>
+    <string name="title_activity_display_message">My Message</string>
+    <string name="click_me">Click Me!</string>
+    <string name="access_shell">Access Root </string>
+    <string name="twitter_sign_in">Sign in</string>
+    <string name="update_status">Update Status</string>
+    <string name="login_with_twitter">Login with Twitter</string>
+    <string name="tweet">Tweet</string>
+    <string name="logout_from_twitter">Logout from Twitter</string>
+
+</resources>
